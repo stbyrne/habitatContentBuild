@@ -266,19 +266,12 @@ angular.module('starter.controllers', [])
 
 .controller('DownloadCtrl', function($scope, $http) {
     
-    
     $scope.download = function(file, revision){
         
-        console.log(file, revision);
-        var blob = new Blob([file, {'Content-Type': 'application/zip'}]),
-            filename = "r" + revision + ".zip";
-        saveAs(file, filename);
-        /*var myZip = ...*/ 
-        var unzipper = new JSUnzip(file);
-        console.log(unzipper.entries);
-        
-        
-        
+        var blob = new Blob([file, {'Content-Type': 'application/epub+zip'}]),
+            filename = "r" + revision + ".epub";
+        saveAs(blob, filename);
+       
     }
     
     /*var myZip = ... // Get it with an XHR request, HTML5 files, etc.
@@ -287,7 +280,6 @@ angular.module('starter.controllers', [])
 
      unzipper.readEntries();    // Creates "entries"
      unzipper.entries;          // Array of JSUnzip.ZipEntry objects.*/
-    
     
 });
  
