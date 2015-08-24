@@ -1,0 +1,27 @@
+<ion-view>
+    <ion-nav-buttons class="bar-energized">
+        <div class="buttons"><button class="button button-icon button-hmhdark ion-drag" menu-toggle="left">
+        </button>
+        </div>
+        <h1 class="title">Habitat Projects</h1>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <div ng-if="projectDetails[0].shortname">
+                <ion-item class="item-divider item-inkling icon item-icon-left">
+                <i class="icon ion-ios-browsers-outline"></i>{{projectDetails[0].shortname}}</ion-item>
+                <ion-item class="item-divider item-hmhdark">
+                <i class="icon ion-ios-pricetag-outline"></i>
+                    Revision: {{projectDetails[0].revision}}, {{projectDetails[0].initiator}}
+                </ion-item>
+                <div class="item" >
+                    <button class="button button-block button-positive item-inkling" ng-click="build()">Build New Epub</button>
+                </div>
+            </div>
+
+            <ion-item ng-repeat="project in projectDetails" ng-init="num=$index" ng-click="setIndex(num)" href="#/app/projects/project"><i class="ion-ios-pricetags-outline"></i>
+                 Revision: {{project.revision}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

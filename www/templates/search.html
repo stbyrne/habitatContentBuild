@@ -1,0 +1,36 @@
+<ion-view>
+  <!--<ion-header-bar>
+    <h1 class="title">Project Fetch</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeProjectFetch()">Close</button>
+    </div>
+  </ion-header-bar>-->
+    
+    <ion-nav-bar>
+        <ion-nav-title>Project Fetch</ion-nav-title>
+        <ion-nav-buttons>
+            <div class="buttons">
+                <button class="button button-icon button-clear ion-drag" menu-toggle="left">
+            </button>
+            </div>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    
+  <ion-content>
+    <form>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Project Name</span>
+          <input type="text" class="project" ng-model="projectData.name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">User Token</span>
+          <input type="password" ng-model="projectData.user">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" ng-disabled="!projectData.name" ng-click="getProject()" type="submit">Get Project</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

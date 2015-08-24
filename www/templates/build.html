@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Project Build</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeProjectBuild()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="buildProject()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Project Name</span>
+          <input type="text" class="project" ng-model="projectData.name">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive item-inkling" ng-disabled="!projectData.name" type="submit">Build Project</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

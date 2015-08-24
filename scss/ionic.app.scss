@@ -1,0 +1,57 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+$hmhorange:                          #ffc800;
+$hmhlight:                           #eaeaea;
+$hmhdark:                            #4d4d4d;
+$hmhwhite:                           #f0f0f0;
+$hmhblue:                            #55bdff;
+$hmhdarkfade:                        rgba(50, 50, 50, .6);
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+.bar-hmhorange{
+    background-color: $hmhorange;   
+    color: $hmhwhite;   
+}
+.bar-hmhorange .button, .bar-hmhorange .nav-bar-title{
+    color: $hmhdark;   
+}
+.item-hmhorange{
+    background-color: $hmhorange;   
+    color: $hmhdark;   
+}
+.item-hmhlight{
+    background-color: $hmhlight;   
+    color: $hmhdark;   
+}
+.item-hmhdark{
+    background-color: $hmhdark;   
+    color: $hmhwhite;   
+}
+.item-hmhdark p{
+    color: $hmhwhite;   
+}
+.item-inkling{
+    background: linear-gradient(135deg, #1274a3 0%,#68ad74 100%);
+    color: $hmhwhite;
+}
+
