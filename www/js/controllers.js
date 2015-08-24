@@ -263,7 +263,13 @@ angular.module('starter.controllers', [])
   $scope.projects = [];
 })*/
 
-.controller('RenameCtrl', function($scope) {
-    console.log('Did it work?');
+.controller('RenameCtrl', function($scope, $http) {
+    $scope.createDir = function(){
+        
+        $http.get('script/folder.php').success(function (data) {
+        console.log(data);
+        });
+           
+    }
 });
  

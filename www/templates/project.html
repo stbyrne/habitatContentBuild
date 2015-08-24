@@ -25,11 +25,13 @@
             <i class="ion-ios-time-outline"></i>
             {{projectDetails[num].dateCreated}}
             </div>
-
+            
+            <div ng-controller="RenameCtrl">
             <a download="{{projectDetails[0].downloadLink}}" href="{{projectDetails[0].downloadLink}}" class="item">
             <i class="ion-ios-download-outline"></i>
             Download Epub
             </a>
+            </div>
 
         </div>
     </ion-content>
