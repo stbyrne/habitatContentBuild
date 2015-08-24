@@ -26,8 +26,8 @@
             {{projectDetails[num].dateCreated}}
             </div>
             
-            <div ng-controller="RenameCtrl">
-            <a download="{{projectDetails[0].downloadLink}}" href="{{projectDetails[0].downloadLink}}" class="item">
+            <div ng-controller="DownloadCtrl">
+            <a ng-init="file=projectDetails[num].downloadLink;revision=projectDetails[num].revision" class="item" ng-click="download(file, revision)">
             <i class="ion-ios-download-outline"></i>
             Download Epub
             </a>

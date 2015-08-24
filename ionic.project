@@ -1,6 +1,6 @@
 {
-  "name": "habitatProjectBuild",
-  "app_id": "7b3d0c4c",
+  "name": "habitatContentBuild",
+  "app_id": "",
   "gulpStartupTasks": [
     "sass",
     "watch"

@@ -187,7 +187,8 @@ angular.module('starter.controllers', [])
             url: url + accessToken,
             method: "POST",
             data: parameter,
-            headers: {'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json',
+                     'responseType':'arraybuffer'}
         }).then(function(data){
             
             console.log(data);
@@ -263,13 +264,30 @@ angular.module('starter.controllers', [])
   $scope.projects = [];
 })*/
 
-.controller('RenameCtrl', function($scope, $http) {
-    $scope.createDir = function(){
+.controller('DownloadCtrl', function($scope, $http) {
+    
+    
+    $scope.download = function(file, revision){
         
-        $http.get('script/folder.php').success(function (data) {
-        console.log(data);
-        });
-           
+        console.log(file, revision);
+        var blob = new Blob([file, {'Content-Type': 'application/zip'}]),
+            filename = "r" + revision + ".zip";
+        saveAs(file, filename);
+        /*var myZip = ...*/ 
+        var unzipper = new JSUnzip(file);
+        console.log(unzipper.entries);
+        
+        
+        
     }
+    
+    /*var myZip = ... // Get it with an XHR request, HTML5 files, etc.
+     var unzipper = new JSUnzip(myZip);
+     unzipper.isZipFile();      // true or false
+
+     unzipper.readEntries();    // Creates "entries"
+     unzipper.entries;          // Array of JSUnzip.ZipEntry objects.*/
+    
+    
 });
  
