@@ -66,8 +66,11 @@ angular.module('starter.controllers', [])
         /*url = Api.getData() + "?access_token=" + accessToken + "&shortname=" + projectName + "&keepEmailOptions=true";*/
       
     $http({
-           url: 'https://habitat.inkling.com/api/contentbuilds/' + accessToken + '&shortname=' + projectName,
-           method: 'GET' 
+            url: 'https://habitat.inkling.com/api/contentbuilds/' + accessToken + '&shortname=' + projectName,
+            method: 'GET',
+            headers: {
+                    responseType: 'arraybuffer'   
+            }
          
           }).then(function(data){
         
@@ -187,8 +190,7 @@ angular.module('starter.controllers', [])
             url: url + accessToken,
             method: "POST",
             data: parameter,
-            headers: {'Content-Type': 'application/json',
-                     'responseType':'arraybuffer'}
+            headers: {'Content-Type': 'application/json'}
         }).then(function(data){
             
             console.log(data);
@@ -266,20 +268,21 @@ angular.module('starter.controllers', [])
 
 .controller('DownloadCtrl', function($scope, $http) {
     
-    
-    $scope.download = function(file, revision){
+    /*$scope.download = function(file, revision){
         
         console.log(file, revision);
-        var blob = new Blob([file, {'Content-Type': 'application/zip'}]),
-            filename = "r" + revision + ".zip";
-        saveAs(file, filename);
-        /*var myZip = ...*/ 
-        var unzipper = new JSUnzip(file);
-        console.log(unzipper.entries);
         
+        var blob = new Blob([file]),
+            filename = "r" + revision + ".epub";
         
+        console.log(blob);*/
+        /*saveAs(file, 'test.epub');*/
         
-    }
+        /*var zip = new JSZip(blob);
+        
+        console.log(zip);
+       
+    }*/
     
     /*var myZip = ... // Get it with an XHR request, HTML5 files, etc.
      var unzipper = new JSUnzip(myZip);
