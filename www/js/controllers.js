@@ -96,10 +96,10 @@ angular.module('starter.controllers', [])
                         created = project.createdAt,
                         date = new Date(created),
                         dateCreated = date.toUTCString().slice(0, -4),
-                        downloadLink = project.downloadLink;
+                        URL = project.downloadLink;
             
                       
-            this.push({shortname: shortname, revision: revision, initiator:initiator, dateCreated:dateCreated, downloadLink:downloadLink})
+            this.push({shortname: shortname, revision: revision, initiator:initiator, dateCreated:dateCreated, URL:URL})
 
                     /*this[key] = value['content'];*/
 
@@ -172,25 +172,17 @@ angular.module('starter.controllers', [])
         /*var url = "https://partner.inkling.com/contentbuilds?access_token=p-970d21fbdd8540e99bd7b23ffb9e0af1",*/
         var projectBuildName = $scope.projectData.name,
             url = 'https://partner.inkling.com/contentbuilds',
-            accessToken = '?access_token=p-970d21fbdd8540e99bd7b23ffb9e0af1',
-        /*var url = ApiEndpoint.url + "/contentbuilds?access_token=0f710cade9cc5e747f59de22d2be5351",*/
-            parameter = JSON.stringify({shortname:projectBuildName,type:'epub'});
+            accessToken = '?access_token=p-970d21fbdd8540e99bd7b23ffb9e0af1',            
+            /*parameter = JSON.stringify({shortname:projectBuildName,type:'epub'});*/
+            parameter = {shortname:projectBuildName,type:'epub'};
         
-        /*$http.post(url + accessToken, parameter, {headers: {'Content-Type': 'application/json'}}).then(function(data){
-            
-            console.log(data);
-            $ionicLoading.hide();
-            
-        }, function(data, status, headers, config, statusText){
-            
-            $ionicLoading.hide();
-        })*/
         
         $http({
             url: url + accessToken,
             method: "POST",
             data: parameter,
-            headers: {'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json'},
+            responseType: 'arraybuffer'
         }).then(function(data){
             
             console.log(data);
@@ -207,7 +199,8 @@ angular.module('starter.controllers', [])
         /*$.ajax({
             url: url + accessToken,
             type: "POST",
-            dataType: "json",
+            data: JSON.stringify(parameter),
+            headers: {'Content-Type': 'application/json'},
             success: function(data){
                 $ionicLoading.hide();
                 console.log(data);
@@ -266,23 +259,51 @@ angular.module('starter.controllers', [])
   $scope.projects = [];
 })*/
 
-.controller('DownloadCtrl', function($scope, $http) {
+.controller('DownloadCtrl', function($scope, $http, $ionicLoading) {
     
-    /*$scope.download = function(file, revision){
+    $scope.download = function(file, revision){
         
-        console.log(file, revision);
+        $ionicLoading.show({
+            template: '<p>Downloading ePub</p><i class="icon ion-loading-c"></i>',
+            showBackdrop: true
+        });
         
-        var blob = new Blob([file]),
-            filename = "r" + revision + ".epub";
+        $http({
+            url: file,
+            method: "GET",
+            responseType: "arraybuffer",
+            
         
-        console.log(blob);*/
-        /*saveAs(file, 'test.epub');*/
         
-        /*var zip = new JSZip(blob);
+        }).then(function(data){
+
+            //Do Something with successful call
+            $ionicLoading.hide();
+            console.log(data);
+            var arrayBufferView = new Uint8Array( data.config );
+            console.log(arrayBufferView);
+            var blob = new Blob( [ arrayBufferView ], { type: "application/epub+zip" } );
+            console.log(blob);
+            saveAs(blob, "test");
+
+        }, function(data){
+
+            //Do Something if call
+            console.log('Error');
+
+        });
         
-        console.log(zip);
+        
+        /*console.log(file, revision);
+        var arrayBufferView = new Uint8Array( this.response );
+        var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
+        var myURL = window.URL || window.webkitURL;
+        var fileURL = myURL.createObjectURL(file);
+        console.log(fileURL, revision);*/
+        /*saveAs(file, revision);*/
+        
        
-    }*/
+    }
     
     /*var myZip = ... // Get it with an XHR request, HTML5 files, etc.
      var unzipper = new JSUnzip(myZip);
