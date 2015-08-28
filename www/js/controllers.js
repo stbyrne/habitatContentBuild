@@ -55,8 +55,8 @@ angular.module('starter.controllers', [])
   $scope.getProject = function() {
       
       $ionicLoading.show({
-    template: '<p>Getting Habitat Projects</p><i class="icon ion-loading-c"></i>',
-    showBackdrop: true
+    template: '<p>Getting Habitat Projects</p><i class="icon ion-load-c"></i>',
+    showBackdrop: false
     });
       
     var projectName = $scope.projectData.name,
@@ -122,7 +122,8 @@ angular.module('starter.controllers', [])
           console.log($scope.indexNumber);
       }
       
-      $scope.getIndex = function(number){
+      $scope.getIndex = function(){
+          console.log("Current Index: " + $scope.indexNumber);
            return $scope.indexNumber;
       }
       
@@ -157,32 +158,26 @@ angular.module('starter.controllers', [])
     
     //Build a new project
     
-    
-    
     $scope.buildProject = function() {
         
         $ionicLoading.show({
-            template: '<p>Building new Habitat Project</p><i class="icon ion-loading-c"></i>',
-            showBackdrop: true
+            template: '<p>Building new Habitat Project</p><i class="icon ion-load-c"></i>',
+            showBackdrop: false
         });
         
         console.log('Trying to Build');
         
-        /*var url = "https://partner.inkling.com/contentbuilds?access_token=p-970d21fbdd8540e99bd7b23ffb9e0af1",*/
-        /*var url = "https://partner.inkling.com/contentbuilds?access_token=p-970d21fbdd8540e99bd7b23ffb9e0af1",*/
         var projectBuildName = $scope.projectData.name,
             url = 'https://partner.inkling.com/contentbuilds',
             accessToken = '?access_token=p-970d21fbdd8540e99bd7b23ffb9e0af1',            
             /*parameter = JSON.stringify({shortname:projectBuildName,type:'epub'});*/
             parameter = {shortname:projectBuildName,type:'epub'};
         
-        
         $http({
             url: url + accessToken,
             method: "POST",
             data: parameter,
-            headers: {'Content-Type': 'application/json'},
-            responseType: 'arraybuffer'
+            headers: {'Content-Type': 'application/json'}
         }).then(function(data){
             
             console.log(data);
@@ -255,36 +250,52 @@ angular.module('starter.controllers', [])
     
 })
 
-/*.controller('ProjectCtrl', function($scope) {
-  $scope.projects = [];
-})*/
-
 .controller('DownloadCtrl', function($scope, $http, $ionicLoading) {
     
     $scope.download = function(file, revision){
         
         $ionicLoading.show({
-            template: '<p>Downloading ePub</p><i class="icon ion-loading-c"></i>',
-            showBackdrop: true
+            template: '<p>Downloading ePub</p><i class="icon ion-load-c"></i>',
+            showBackdrop: false
         });
         
         $http({
             url: file,
             method: "GET",
-            responseType: "arraybuffer",
-            
-        
+            responseType: "arraybuffer"
         
         }).then(function(data){
 
             //Do Something with successful call
             $ionicLoading.hide();
             console.log(data);
-            var arrayBufferView = new Uint8Array( data.config );
-            console.log(arrayBufferView);
-            var blob = new Blob( [ arrayBufferView ], { type: "application/epub+zip" } );
-            console.log(blob);
-            saveAs(blob, "test");
+            var blob = new Blob([data.data], { type: 'application/epub+zip' }),
+                filename = 'r' + revision + '.zip';
+            
+            saveAs(blob, filename);
+            
+            /*$http({
+            url: '../Downloads/test.zip',
+            method: "GET",
+            responseType: "arraybuffer"
+        
+            }).then(function(data){
+                
+                console.log(data);
+                
+            }, function(data){
+                
+                console.log('Error getting zip file: ' + data);
+                   
+            });*/
+            
+            /*var myZip = '../Downloads/test.zip'; // Get it with an XHR request, HTML5 files, etc.
+            var unzipper = new JSUnzip(myZip);
+            console.log(unzipper);
+            unzipper.isZipFile();      // true or false
+
+            unzipper.readEntries();    // Creates "entries"
+            unzipper.entries;          // Array of JSUnzip.ZipEntry objects.*/
 
         }, function(data){
 
@@ -292,26 +303,7 @@ angular.module('starter.controllers', [])
             console.log('Error');
 
         });
-        
-        
-        /*console.log(file, revision);
-        var arrayBufferView = new Uint8Array( this.response );
-        var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
-        var myURL = window.URL || window.webkitURL;
-        var fileURL = myURL.createObjectURL(file);
-        console.log(fileURL, revision);*/
-        /*saveAs(file, revision);*/
-        
-       
     }
-    
-    /*var myZip = ... // Get it with an XHR request, HTML5 files, etc.
-     var unzipper = new JSUnzip(myZip);
-     unzipper.isZipFile();      // true or false
-
-     unzipper.readEntries();    // Creates "entries"
-     unzipper.entries;          // Array of JSUnzip.ZipEntry objects.*/
-    
     
 });
  

@@ -54,4 +54,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     background: linear-gradient(135deg, #1274a3 0%,#68ad74 100%);
     color: $hmhwhite;
 }
+.loading-container .loading {
+    
+    background-color: $hmhdarkfade;
+    color: $hmhorange;
+    font-size: 20px;
+}
+.loading-container .loading i{
+    
+    zoom: 2;
+}
 

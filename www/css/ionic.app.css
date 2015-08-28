@@ -7718,3 +7718,11 @@ a.button {
 .item-inkling {
   background: linear-gradient(135deg, #1274a3 0%, #68ad74 100%);
   color: #f0f0f0; }
+
+.loading-container .loading {
+  background-color: rgba(50, 50, 50, 0.6);
+  color: #ffc800;
+  font-size: 20px; }
+
+.loading-container .loading i {
+  zoom: 2; }
