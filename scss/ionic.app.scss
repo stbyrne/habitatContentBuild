@@ -60,8 +60,32 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     color: $hmhorange;
     font-size: 20px;
 }
-.loading-container .loading i{
+.spiral-hmhorange svg{
     
-    zoom: 2;
+  width: 40px;
+  height: 40px;
+  stroke: $hmhorange;
+  fill: $hmhorange;
+}
+.lines-hmhorange svg{
+    
+  width: 40px;
+  height: 40px;
+  stroke: $hmhorange;
+  fill: $hmhorange;
+}
+.dots-hmhorange svg{
+    
+  width: 40px;
+  height: 40px;
+  stroke: $hmhorange;
+  fill: $hmhorange;
+}
+.ripple-hmhorange svg{
+    
+  width: 40px;
+  height: 40px;
+  stroke: $hmhorange;
+  fill: $hmhorange;
 }
 

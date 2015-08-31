@@ -55,8 +55,8 @@ angular.module('starter.controllers', [])
   $scope.getProject = function() {
       
       $ionicLoading.show({
-    template: '<p>Getting Habitat Projects</p><i class="icon ion-load-c"></i>',
-    showBackdrop: false
+    template: '<p>Getting Habitat Projects</p><ion-spinner icon="spiral" class="spiral-hmhorange"></ion-spinner>',
+    showBackdrop: true
     });
       
     var projectName = $scope.projectData.name,
@@ -161,8 +161,8 @@ angular.module('starter.controllers', [])
     $scope.buildProject = function() {
         
         $ionicLoading.show({
-            template: '<p>Building new Habitat Project</p><i class="icon ion-load-c"></i>',
-            showBackdrop: false
+            template: '<p>Building new Habitat Project</p><ion-spinner icon="lines" class="lines-hmhorange"></ion-spinner>',
+            showBackdrop: true
         });
         
         console.log('Trying to Build');
@@ -255,8 +255,8 @@ angular.module('starter.controllers', [])
     $scope.download = function(file, revision){
         
         $ionicLoading.show({
-            template: '<p>Downloading ePub</p><i class="icon ion-load-c"></i>',
-            showBackdrop: false
+            template: '<p>Downloading ePub as zip</p><ion-spinner icon="dots" class="dots-hmhorange"></ion-spinner>',
+            showBackdrop: true
         });
         
         $http({
@@ -273,6 +273,50 @@ angular.module('starter.controllers', [])
                 filename = 'r' + revision + '.zip';
             
             saveAs(blob, filename);
+            
+            /*var flow = new Flow({
+                target:'./temp'
+            });
+            flow.addFile(blob);
+            
+            console.log(flow);*/
+            
+            /*flow.upload();*/
+            
+            // Try to save zip to directory
+            
+            /*$ionicLoading.show({
+            template: '<p>Sending zip to temp folder</p><ion-spinner icon="ripple" class="ripple-hmhorange"></ion-spinner>',
+            showBackdrop: true
+            });
+            
+            var file = data.data;
+            console.log('file is ' );
+            console.dir(file);
+            var uploadUrl = "/temp";
+            fileUpload.uploadFileToUrl(file, uploadUrl);
+            $ionicLoading.hide();*/
+            
+            /*$scope.doUpload = function () {*/
+                /*upload*/
+            /*$http({
+                url: '#',
+                method: 'POST',
+                data: blob,
+                headers:{
+                'Content-Type': 'application/epub+zip'
+                }
+            }).then( function (response) {
+                
+                saveAs(blob, 'test.zip');
+                $ionicLoading.hide();
+                
+                }, function (response) {
+                
+                $ionicLoading.hide();
+                
+                });*/
+            /*}*/
             
             /*$http({
             url: '../Downloads/test.zip',

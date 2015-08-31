@@ -1,27 +1,32 @@
 angular.module('starter.services', [])
 
-.factory('Api', function($http, $q, ApiEndpoint) {
-  console.log('ApiEndpoint', ApiEndpoint)
+.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}])
 
-  var getApiData = function(s9ID, accessToken) {
-    var q = $q.defer();
-      
-  var url = ApiEndpoint.url + '/contentbuilds/' + s9ID + accessToken;
-
-    $http.get(url)
-    .success(function(data) {
-      console.log('Got some data: ', data)
-      q.resolve(data);
-    })
-    .error(function(error){
-      console.log('Had an error')
-      q.reject(error);
-    })
-
-    return q.promise;
-  }
-
-  return {
-    getApiData: getApiData
-  };
-})
+.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl){
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(){
+        })
+        .error(function(){
+        });
+    }
+}]);

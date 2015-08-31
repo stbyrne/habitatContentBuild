@@ -7724,5 +7724,26 @@ a.button {
   color: #ffc800;
   font-size: 20px; }
 
-.loading-container .loading i {
-  zoom: 2; }
+.spiral-hmhorange svg {
+  width: 40px;
+  height: 40px;
+  stroke: #ffc800;
+  fill: #ffc800; }
+
+.lines-hmhorange svg {
+  width: 40px;
+  height: 40px;
+  stroke: #ffc800;
+  fill: #ffc800; }
+
+.dots-hmhorange svg {
+  width: 40px;
+  height: 40px;
+  stroke: #ffc800;
+  fill: #ffc800; }
+
+.ripple-hmhorange svg {
+  width: 40px;
+  height: 40px;
+  stroke: #ffc800;
+  fill: #ffc800; }
