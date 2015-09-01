@@ -7747,3 +7747,6 @@ a.button {
   height: 40px;
   stroke: #ffc800;
   fill: #ffc800; }
+
+.button-flow {
+  width: 100%; }

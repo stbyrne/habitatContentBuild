@@ -26,10 +26,42 @@
             {{projectDetails[num].dateCreated}}
             </div>
             <div ng-controller="DownloadCtrl">
-            <a ng-init="file=projectDetails[num].URL;revision=projectDetails[num].revision" class="item" ng-click="download(file, revision)">
-            <i class="ion-ios-download-outline"></i>
-            Download Epub
-            </a>
+                <a ng-init="file=projectDetails[num].URL;revision=projectDetails[num].revision" class="item" ng-click="download(file, revision)">
+                <i class="ion-ios-download-outline"></i>
+                Download Epub
+                </a>
+
+                <div flow-init="{
+                                  target: '/temp/',
+                                  permanentErrors: [415, 500, 501]
+                                }" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+                    <div class="item" >
+                        <!--<input type="file" flow-btn/>-->
+                        <span class="button button-flow item-inkling" flow-btn>Upload File</span>
+                    </div>
+                    <div ng-repeat="file in $flow.files">
+                        <div href="#" class="item">
+                        <i class="ion-ios-pie-outline"></i>
+                        Chunk: {{$index+1}}
+                        </div>
+                        <div href="#" class="item">
+                        <i class="ion-ios-copy-outline"></i>
+                        File Name: {{file.name}}
+                        </div>
+                        <div href="#" class="item">
+                        <i class="ion-ios-email-outline"></i>
+                        Message: {{file.msg}}
+                        </div>
+                    </div>
+
+                    <!--<table>
+                        <tr ng-repeat="file in $flow.files">
+                            <td>{{$index+1}}</td>
+                            <td>{{file.name}}</td>
+                            <td>{{file.msg}}</td>
+                        </tr>
+                    </table>-->
+                </div>
             </div>
 
         </div>
