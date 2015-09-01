@@ -32,8 +32,8 @@
                 </a>
 
                 <div flow-init="{
-                                  target: '/temp/',
-                                  permanentErrors: [415, 500, 501]
+                                target: 'http://localhost/www/temp',
+                                testChunks: false
                                 }" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
                     <div class="item" >
                         <!--<input type="file" flow-btn/>-->
