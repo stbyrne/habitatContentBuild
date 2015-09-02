@@ -33,7 +33,25 @@
 
                 <div flow-init="{
                                 target: 'http://localhost/www/temp',
-                                testChunks: false
+                                chunkSize: 1024 * 1024,
+                                forceChunkSize: false,
+                                simultaneousUploads: 5,
+                                singleFile: false,
+                                fileParameterName: 'file',
+                                progressCallbacksInterval: 0,
+                                speedSmoothingFactor: 1,
+                                query: {},
+                                headers: {},
+                                withCredentials: false,
+                                preprocess: null,
+                                method: 'multipart',
+                                prioritizeFirstAndLastChunk: false,
+                                testChunks: false,
+                                generateUniqueIdentifier: null,
+                                maxChunkRetries: undefined,
+                                chunkRetryInterval: undefined,
+                                permanentErrors: [415, 500, 501],
+                                onDropStopPropagation: false
                                 }" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
                     <div class="item" >
                         <!--<input type="file" flow-btn/>-->
