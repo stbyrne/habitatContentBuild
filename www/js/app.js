@@ -25,6 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
     
+    
         
     /*$httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.headers.common['X-Requested-With'] = undefined;
